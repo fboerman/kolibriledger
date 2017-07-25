@@ -1,0 +1,4 @@
+kolibriledger
+*.o
+.vscode/*
+docs/*
