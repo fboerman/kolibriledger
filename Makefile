@@ -1,6 +1,6 @@
 TARGET = kolibriledger
 CC=gcc
-CFLAGS = -g -Wall -std=c99 `pkg-config --cflags libsodium`
+CFLAGS = -g -Wall -std=gnu99 `pkg-config --cflags libsodium`
 DEPS = 
 LIBS = `pkg-config --libs libsodium`
 

@@ -1,6 +1,6 @@
 TARGET = keypairtest
 CC=gcc
-CFLAGS = -Wall -g `pkg-config --cflags libsodium`
+CFLAGS = -Wall -g -std=gnu99 `pkg-config --cflags libsodium`
 DEPS = 
 LIBS = `pkg-config --libs libsodium` -lm -lrt
 
