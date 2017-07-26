@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/fboerman/kolibriledger.svg?branch=master)](https://travis-ci.org/fboerman/kolibriledger)
 # Kolibri Ledger
 ## Description
 This repo holds the source code to the Kolibri Ledger. This is a distributed Ledger system build on blockchain technology.
