@@ -1,7 +1,7 @@
 language: C
 compiler: gcc
 dist: trusty
-install: travis-install-libsodium.sh
+install: ./travis-install-libsodium.sh
 before_script:
   - cp keypair.{h,c} keypairtest/
 script:
