@@ -2,7 +2,7 @@ TARGET = keypairtest
 CC=gcc
 CFLAGS = -Wall -g
 DEPS = 
-LIBS = -lsodium -lm -lrt
+LIBS = `pkg-config --cflags --libs libsodium` -lm -lrt
 
 .PHONY: default all clean
 

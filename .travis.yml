@@ -1,7 +1,10 @@
 language: C
 compiler: gcc
 dist: trusty
-install: ./travis-install-libsodium.sh
+install:
+  - ./travis-install-libsodium.sh
+  - export PKG_CONFIG_PATH=$HOME/libsodium/lib/pkgconfig
+  - export LD_LIBRARY_PATH=$HOME/libsodium/lib
 before_script:
   - cp keypair.{h,c} keypairtest/
 script:

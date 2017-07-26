@@ -2,7 +2,7 @@ TARGET = kolibriledger
 CC=gcc
 CFLAGS = -g -Wall -std=c99
 DEPS = 
-LIBS = -lsodium
+LIBS = `pkg-config --cflags --libs libsodium`
 
 .PHONY: default all clean
 
