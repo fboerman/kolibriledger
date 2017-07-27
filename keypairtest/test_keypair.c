@@ -2,7 +2,7 @@
 #include <sodium.h>
 
 #include "keypair.h"
-#include "minunit.h"
+#include "../minunit.h"
 
 int tests_run = 0;
 
