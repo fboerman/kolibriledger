@@ -7,8 +7,13 @@ install:
   - export LD_LIBRARY_PATH=$HOME/libsodium/lib
 before_script:
   - cp keypair.{h,c} keypairtest/
+  - cp keypair.{h,c} transactiontest/
+  - cp transaction.{h,c} transactiontest/
 script:
   - make
   - cd keypairtest
   - make
   - ./keypairtest
+  - cd ../transactiontest
+  - make
+  - ./transactiontest
