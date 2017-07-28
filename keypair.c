@@ -69,7 +69,7 @@ keypair* keypair_load(const char* name) {
     }
 
     for(int i = 0; i < crypto_sign_PUBLICKEYBYTES; i++) {
-        fscanf(fpub, "%02x", &(kp->pk[i]));
+        fscanf(fpub, "%02x", (unsigned int*)&(kp->pk[i]));
     }
 
     fclose(fpub);
@@ -82,7 +82,7 @@ keypair* keypair_load(const char* name) {
 
     for(int i = 0; i < crypto_sign_SECRETKEYBYTES; i++)
     {
-        fscanf(fpriv, "%02x", &(kp->sk[i]));
+        fscanf(fpriv, "%02x", (unsigned int*)&(kp->sk[i]));
     }
 
     fclose(fpriv);

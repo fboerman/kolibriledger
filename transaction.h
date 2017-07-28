@@ -88,4 +88,44 @@ int transaction_sign(transaction* ta, keypair* kp, int type);
   */
 int transaction_checkequal(transaction* ta1, transaction* ta2);
 
+/**
+  * @brief give string representation of the transaction core
+  *
+  * this function converts a given transaction to a string representation. It only handles the core, without the signatures
+  * it gives 7 lines of 16 hexes 
+  * @param ta the transaction to represent
+  * @return string of the transaction
+  */
+ char* transaction_getstring_core(transaction* ta);
+
+ /**
+  * @brief give string representation of the transaction
+  *
+  * this function converts a given transaction to a string representation. It handles the full struct including signatures
+  * it gives 29 lines of 16 hexes 
+  * @param ta the transaction to represent
+  * @return string of the transaction
+  */
+ char* transaction_getstring_full(transaction* ta);
+
+ /**
+  * @brief load transaction core from string
+  *
+  * this function constructs a transaction struct from a string produced by the getstring function. It only handles the core, without the signatures.
+  * it returns the build transaction struct pointer or NULL on failure
+  * @param string containing the transaction
+  * @return pointer to the build struct or NULL on failure
+  */
+transaction* transaction_loadstring_core(char* str);
+
+ /**
+ * @brief load transaction from string
+ *
+ * this function constructs a transaction struct from a string produced by the getstring function. It handles the full struct including signatures
+ * it returns the build transaction struct pointer or NULL on failure
+ * @param string containing the transaction
+ * @return pointer to the build struct or NULL on failure
+ */
+transaction* transaction_loadstring_full(char* str);
+
 #endif

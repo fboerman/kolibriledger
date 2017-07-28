@@ -94,3 +94,79 @@ int transaction_checkequal(transaction* ta1, transaction* ta2) {
     
     return memcmp((const void*)ta1, (const void*)ta2, TRANSACTION_SIGN_LEN);
 }
+
+char* transaction_getstring_core(transaction* ta) {
+    char* result = (char*)malloc(TRANSACTION_SIGN_LEN * 3 * sizeof(char));
+    memset(result, 0, TRANSACTION_SIGN_LEN * 3 * sizeof(char));
+    unsigned char* data = (unsigned char*)ta;
+    
+    for(int i = 0; i < TRANSACTION_SIGN_LEN; i++) {
+        if(i % 16 == 15) {
+            sprintf(result + strlen(result), "%02x\n", data[i]);
+        } else {
+            sprintf(result + strlen(result), "%02x ", data[i]);
+        }
+        
+    }
+
+    return result;
+}
+
+char* transaction_getstring_full(transaction* ta) {
+    char* result = (char*)malloc(sizeof(transaction) * 3 * sizeof(char));
+    memset(result, 0, sizeof(transaction) * 3 * sizeof(char));
+    unsigned char* data = (unsigned char*)ta;
+    
+    for(int i = 0; i < sizeof(transaction); i++) {
+        if(i % 16 == 15) {
+            sprintf(result + strlen(result), "%02x\n", data[i]);
+        } else {
+            sprintf(result + strlen(result), "%02x ", data[i]);
+        }
+        
+    }
+
+    return result;
+}
+
+transaction* transaction_loadstring_core(char* str) {
+    transaction* ta = transaction_create_empty();
+    if(ta == NULL) {
+        return NULL;
+    }
+    unsigned char* data = (unsigned char*)ta;
+
+    //remove all newlines
+    for(int i = 0; i < TRANSACTION_SIGN_LEN * 3; i++) {
+        if(str[i] == '\n') {
+            str[i] = ' ';
+        }
+    }
+    //parse the string
+    for(int i = 0; i < TRANSACTION_SIGN_LEN * 3; i++) {
+        sscanf(str + i*3, "%02x", (unsigned int*)&(data[i]));
+    }
+
+    return ta;
+}
+
+transaction* transaction_loadstring_full(char* str) {
+    transaction* ta = transaction_create_empty();
+    if(ta == NULL) {
+        return NULL;
+    }
+    unsigned char* data = (unsigned char*)ta;
+
+    //remove all newlines
+    for(int i = 0; i < sizeof(transaction) * 3; i++) {
+        if(str[i] == '\n') {
+            str[i] = ' ';
+        }
+    }
+    //parse the string
+    for(int i = 0; i < sizeof(transaction) * 3; i++) {
+        sscanf(str + i*3, "%02x", (unsigned int*)&(data[i]));
+    }
+
+    return ta;
+}

@@ -79,12 +79,31 @@ MU_TEST(test_transaction_sig_corrupt) {
     mu_assert_int_eq(1, transaction_verify(ta, 1));
 }
 
+MU_TEST(test_transaction_save_and_load_string) {
+    char* str_core = transaction_getstring_core(ta);
+    char* str_full = transaction_getstring_full(ta);
+    
+    mu_check(str_core != NULL);
+    mu_check(str_full != NULL);
+    
+    transaction* ta1 = transaction_loadstring_core(str_core);
+    transaction* ta2 = transaction_loadstring_full(str_full);
+
+    mu_assert_int_eq(0, transaction_checkequal(ta1, ta2));
+    mu_assert_int_eq(0, transaction_checkequal(ta1, ta));
+    mu_assert_int_eq(0, transaction_verify_full(ta2));
+
+    free(str_core);
+    free(str_full);
+}
+
 MU_TEST_SUITE(transaction_suite) {
     MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
     suite_setup();
     MU_RUN_TEST(test_sodium_init);
     MU_RUN_TEST(test_transaction_generate);
     MU_RUN_TEST(test_transaction_sign_and_verify);
+    MU_RUN_TEST(test_transaction_save_and_load_string);
     MU_RUN_TEST(test_transaction_corrupt);
     MU_RUN_TEST(test_transaction_sig_corrupt);
     suite_teardown();
