@@ -19,3 +19,12 @@ make clean &>/dev/null
 rm transaction.{h,c}
 rm keypair.{h,c}
 cd ..
+
+echo "Running the list test suite"
+cp list.{h,c} listtest/
+cd listtest/
+make
+./listtest
+make clean &>/dev/null
+rm list.{h,c}
+cd ..

@@ -17,3 +17,6 @@ script:
   - cd ../transactiontest
   - make
   - ./transactiontest
+  - cd ../listtest
+  - make
+  - ./listtest
