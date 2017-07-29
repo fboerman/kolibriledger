@@ -9,6 +9,7 @@ before_script:
   - cp keypair.{h,c} keypairtest/
   - cp keypair.{h,c} transactiontest/
   - cp transaction.{h,c} transactiontest/
+  - cp list.{h,c} listtest/
 script:
   - make
   - cd keypairtest
