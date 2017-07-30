@@ -24,3 +24,7 @@ script:
   - make
   - ./listtest
   - valgrind ./listtest
+addons:
+  apt:
+    packages:
+    - valgrind
