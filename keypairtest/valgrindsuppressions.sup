@@ -1,0 +1,10 @@
+{
+   fscanf misbehaving
+   Memcheck:Addr4
+   fun:_IO_vfscanf
+   fun:__isoc99_fscanf
+   fun:keypair_load
+   fun:test_keypair_load
+   fun:keypair_suite
+   fun:main
+}

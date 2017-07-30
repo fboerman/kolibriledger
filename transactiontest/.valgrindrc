@@ -1,0 +1,3 @@
+--leak-check=full
+--error-exitcode=2
+--suppressions=valgrindsuppressions.sup

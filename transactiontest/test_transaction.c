@@ -73,8 +73,8 @@ MU_TEST(test_transaction_corrupt) {
 }
 
 MU_TEST(test_transaction_sig_corrupt) {
-    ta->buyer_sig[3] = '0';
-    ta->seller_sig[7] = '0';
+    ta->buyer_sig[3]++;
+    ta->seller_sig[7]++;
     mu_assert_int_eq(1, transaction_verify(ta, 0));
     mu_assert_int_eq(1, transaction_verify(ta, 1));
 }
@@ -95,6 +95,8 @@ MU_TEST(test_transaction_save_and_load_string) {
 
     free(str_core);
     free(str_full);
+    transaction_destroy(ta1);
+    transaction_destroy(ta2);
 }
 
 MU_TEST_SUITE(transaction_suite) {

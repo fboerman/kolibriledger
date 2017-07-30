@@ -1,0 +1,11 @@
+{
+   sscanf misbehaving
+   Memcheck:Addr4
+   fun:_IO_vfscanf
+   fun:__isoc99_vsscanf
+   fun:__isoc99_sscanf
+   fun:transaction_loadstring_full
+   fun:test_transaction_save_and_load_string
+   fun:transaction_suite
+   fun:main
+}

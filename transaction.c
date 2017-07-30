@@ -96,7 +96,7 @@ int transaction_checkequal(transaction* ta1, transaction* ta2) {
 }
 
 char* transaction_getstring_core(transaction* ta) {
-    char* result = (char*)malloc(TRANSACTION_SIGN_LEN * 3 * sizeof(char));
+    char* result = (char*)malloc(TRANSACTION_SIGN_LEN * 3 * sizeof(char) + sizeof(char));
     memset(result, 0, TRANSACTION_SIGN_LEN * 3 * sizeof(char));
     unsigned char* data = (unsigned char*)ta;
     
@@ -113,7 +113,7 @@ char* transaction_getstring_core(transaction* ta) {
 }
 
 char* transaction_getstring_full(transaction* ta) {
-    char* result = (char*)malloc(sizeof(transaction) * 3 * sizeof(char));
+    char* result = (char*)malloc(sizeof(transaction) * 3 * sizeof(char) + sizeof(char));
     memset(result, 0, sizeof(transaction) * 3 * sizeof(char));
     unsigned char* data = (unsigned char*)ta;
     
@@ -143,7 +143,7 @@ transaction* transaction_loadstring_core(char* str) {
         }
     }
     //parse the string
-    for(int i = 0; i < TRANSACTION_SIGN_LEN * 3; i++) {
+    for(int i = 0; i < TRANSACTION_SIGN_LEN; i++) {
         sscanf(str + i*3, "%02x", (unsigned int*)&(data[i]));
     }
 
@@ -164,7 +164,7 @@ transaction* transaction_loadstring_full(char* str) {
         }
     }
     //parse the string
-    for(int i = 0; i < sizeof(transaction) * 3; i++) {
+    for(int i = 0; i < sizeof(transaction); i++) {
         sscanf(str + i*3, "%02x", (unsigned int*)&(data[i]));
     }
 

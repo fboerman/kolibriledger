@@ -10,8 +10,8 @@ keypair* keypair_generate() {
 }
 
 int keypair_save(const char* name, keypair* kp) {
-    char* fnamepriv = (char*)malloc((strlen(name) + 4) * sizeof(char));
-    char* fnamepub = (char*)malloc((strlen(name) + 3) * sizeof(char));
+    char* fnamepriv = (char*)malloc((strlen(name) + 6) * sizeof(char));
+    char* fnamepub = (char*)malloc((strlen(name) + 5) * sizeof(char));
     
     sprintf(fnamepriv, "%s.priv", name);
     sprintf(fnamepub, "%s.pub", name);
@@ -45,12 +45,15 @@ int keypair_save(const char* name, keypair* kp) {
         return 1;
     }
 
+    free(fnamepriv);
+    free(fnamepub);
+
     return 0;
 }
 
 keypair* keypair_load(const char* name) {
-    char* fnamepriv = (char*)malloc((strlen(name) + 4) * sizeof(char));
-    char* fnamepub = (char*)malloc((strlen(name) + 3) * sizeof(char));
+    char* fnamepriv = (char*)malloc((strlen(name) + 6) * sizeof(char));
+    char* fnamepub = (char*)malloc((strlen(name) + 5) * sizeof(char));
     keypair* kp = (keypair*)malloc(sizeof(keypair));
     
     if(kp == NULL) {
@@ -86,6 +89,9 @@ keypair* keypair_load(const char* name) {
     }
 
     fclose(fpriv);
+
+    free(fnamepriv);
+    free(fnamepub);
 
     return kp;
 }

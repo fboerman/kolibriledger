@@ -1,0 +1,2 @@
+--leak-check=full
+--error-exitcode=2

@@ -15,9 +15,12 @@ script:
   - cd keypairtest
   - make
   - ./keypairtest
+  - valgrind ./keypairtest
   - cd ../transactiontest
   - make
   - ./transactiontest
+  - valgrind ./transactiontest
   - cd ../listtest
   - make
   - ./listtest
+  - valgrind ./listtest
